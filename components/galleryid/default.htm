@@ -1,0 +1,3 @@
+{% set displayMode = (__SELF__.getProperties().inline != 1 ? '@gallery':'@gallery_inline') %}
+
+{% partial displayMode %}

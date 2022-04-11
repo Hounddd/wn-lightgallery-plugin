@@ -1,0 +1,19 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: hounddd.lightgallery::lang.common.name
+        searchable: true
+
+    galleries_count:
+        label: hounddd.lightgallery::lang.common.galleries
+
+    created_at:
+        label: hounddd.lightgallery::lang.common.created
+        invisible: true
+
+    updated_at:
+        label: hounddd.lightgallery::lang.common.updated
+        invisible: true

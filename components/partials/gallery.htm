@@ -1,0 +1,71 @@
+{% set gallery = __SELF__.gallery %}
+{% set params = __SELF__.getProperties() %}
+
+<div class="galleryPhotos">
+    <div class="galleryPhotos-title">
+        <h3>{{ gallery.name }}</h3>
+    </div>
+    <div class="galleryPhotos-grid" id="{{ __SELF__ }}">
+        {% for image in gallery.images %}
+        <a href="{{ image.path }}"
+            data-sub-html="<h4>{{ image.title }}</h4><p>{{ image.description }}</p>"
+            data-external-thumb-image="{{ image.getThumb(100, 100, 'auto') }}"
+            data-lg-size="{{ image.width }}-{{ image.height }}"
+        >
+            <img class="galleryPhotos-image" src="{{ image.getThumb(params.width, params.height, params.resizer) }}" alt="{{ image.title }}" />
+            <div class="galleryPhotos-info">{{ image.title }}</div>
+        </a>
+        {% else %}
+		    {{ noImagesMessage }}
+        {% endfor %}
+    </div>
+</div>
+
+{% put scripts %}
+    <script>
+        lightGallery(document.getElementById("{{ __SELF__ }}"), {
+            // licenseKey: 'your_license_key'
+            controls         : {{ params.controls }},
+            counter          : {{ params.counter }},
+            download         : {{ params.download }},
+            easing           : 'ease-in-out',
+            escKey           : {{ params.escKey }},
+            exThumbImage     : 'data-external-thumb-image',
+            loop             : {{ params.loop }},
+            mode             : '{{ params.mode }}',
+            plugins          : [{{ params.plugins | join(',') }}],
+            preload          : {{ params.preload }},
+            speed            : {{ params.speed }},
+            slideShowInterval: {{ params.pause }},
+            slideShowAutoplay: {{ 'lgAutoplay' in params.plugins ? '!0':'!1' }},
+            {% if params.prevHtml -%}
+            prevHtml         : '{{ params.prevHtml | raw }}',
+            {%- endif %}
+
+            {% if params.nextHtml -%}
+            nextHtml         : '{{ params.nextHtml | raw }}',
+            {%- endif %}
+        });
+    </script>
+{% endput %}
+
+{#
+ # Temporary fix to avoid duplicate display of controls
+ # when prevHtml or nextHtml options are set
+ # see: https://github.com/sachinchoolur/lightGallery/issues/643
+ #}
+{% if params.prevHtml %}
+{% put styles %}
+    <style>
+        .lg-prev::after { content: none; }
+    </style>
+{% endput%}
+{% endif %}
+
+{% if params.nextHtml %}
+{% put styles %}
+    <style>
+        .lg-next::before { content: none; }
+    </style>
+{% endput%}
+{% endif %}

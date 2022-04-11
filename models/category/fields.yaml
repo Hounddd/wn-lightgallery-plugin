@@ -1,0 +1,23 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        span: left
+        label: hounddd.lightgallery::lang.common.name
+        placeholder: hounddd.lightgallery::lang.category.name_placeholder
+
+    slug:
+        label: hounddd.lightgallery::lang.common.slug
+        span: right
+        placeholder: hounddd.lightgallery::lang.category.slug_placeholder
+        preset:
+            field: name
+            type: slug
+
+    description:
+        label: hounddd.lightgallery::lang.common.description
+        span: full
+        type: textarea
+        placeholder: hounddd.lightgallery::lang.category.description_placeholder

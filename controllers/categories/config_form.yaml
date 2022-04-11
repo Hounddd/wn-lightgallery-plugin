@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: hounddd.lightgallery::lang.common.category
+
+# Model Form Field configuration
+form: $/hounddd/lightgallery/models/category/fields.yaml
+
+# Model Class name
+modelClass: Hounddd\lightGallery\Models\Category
+
+# Default redirect location
+defaultRedirect: hounddd/lightgallery/categories
+
+# Create page
+create:
+    title: hounddd.lightgallery::lang.categories.new_category
+    redirect: hounddd/lightgallery/categories/update/:id
+    redirectClose: hounddd/lightgallery/categories
+
+# Update page
+update:
+    title: hounddd.lightgallery::lang.categories.update_category
+    redirect: hounddd/lightgallery/categories
+    redirectClose: hounddd/lightgallery/categories
+
+# Preview page
+preview:
+    title: hounddd.lightgallery::lang.categories.preview_category

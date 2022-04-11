@@ -1,0 +1,39 @@
+{% set galleries = __SELF__.galleries %}
+
+<div class="galleryList">
+	{% for gallery in galleries %}
+		<div class="galleryList-col">
+			<div class="galleryList-card">
+				<div class="galleryList-cardImage">
+					<img src="{{ gallery.featured_image.path }}" alt="">
+				</div>
+				<div class="galleryList-cardBody">
+					<div class="galleryList-cardTexts">
+						<h4><a href="{{gallery.url}}">{{gallery.name}}</a></h4>
+						<p class="galleryList-cardDescription">{{ gallery.description }}</p>
+					</div>
+					<p class="galleryList-cardInfos">
+						{% if gallery.categories.count %}
+						{% set categoryLinks = gallery.categories | map(c => "<a href=\"#{c.url}\">#{c.name}</a>") | join(', ') %}
+
+						{{ 'hounddd.lightgallery::lang.common.infos_published' | trans({
+							date: gallery.published_at | date('hounddd.lightgallery::lang.common.date_format' | trans),
+							categories: categoryLinks
+						}) }}
+						{% else %}
+						{{ 'hounddd.lightgallery::lang.common.infos_published_no_categories' | trans({
+							date: gallery.published_at | date('hounddd.lightgallery::lang.common.date_format' | trans)
+		                }) }}
+						{% endif %}
+					</p>
+				</div>
+			</div>
+		</div>
+	{% else %}
+		{{ noGalleriesMessage }}
+	{% endfor %}
+</div>
+
+{% if galleries.links %}
+    {{ galleries.links() | raw }}
+{% endif %}

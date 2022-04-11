@@ -1,0 +1,60 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        span: left
+        label: hounddd.lightgallery::lang.common.name
+        placeholder: hounddd.lightgallery::lang.gallery.name_placeholder
+
+    slug:
+        label: hounddd.lightgallery::lang.common.slug
+        span: right
+        placeholder: hounddd.lightgallery::lang.gallery.slug_placeholder
+        preset:
+            field: name
+            type: slug
+
+    description:
+        label: hounddd.lightgallery::lang.common.description
+        span: left
+        type: textarea
+        size: small
+        placeholder: hounddd.lightgallery::lang.gallery.description_placeholder
+
+    published:
+        label: hounddd.lightgallery::lang.common.published
+        type: switch
+        span: right
+
+    published_at:
+        label: hounddd.lightgallery::lang.common.published_at
+        type: datepicker
+        mode: date
+        span: right
+        trigger:
+            action: enable
+            field: published
+            condition: checked
+tabs:
+    icons:
+        hounddd.lightgallery::lang.gallery.tabs.images: icon-file-image-o
+        hounddd.lightgallery::lang.gallery.tabs.settings: icon-gear
+    fields:
+        images:
+            tab: hounddd.lightgallery::lang.gallery.tabs.images
+            label: hounddd.lightgallery::lang.gallery.images
+            commentAbove: hounddd.lightgallery::lang.gallery.images_comment
+            commentHtml: true
+            span: full
+            type: fileupload
+            mode: image
+            imageHeight: 150
+            imageWidth: 250
+
+        categories:
+            label: hounddd.lightgallery::lang.gallery.categories
+            comment: hounddd.lightgallery::lang.gallery.categories_comment
+            type: relation
+            tab: hounddd.lightgallery::lang.gallery.tabs.settings

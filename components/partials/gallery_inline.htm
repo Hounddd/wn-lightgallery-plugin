@@ -1,0 +1,84 @@
+{% set gallery = __SELF__.gallery %}
+{% set params = __SELF__.getProperties() %}
+{% set plugins = params | filter((v, k) => v in [1,'true'] and "lg" in k) %}
+
+<div class="galleryPhotos">
+    <div class="galleryPhotos-title">
+        <h3>{{ gallery.name }}</h3>
+    </div>
+    <div id="{{ __SELF__ }}" class="galleryPhotos-inlineContainer">
+        {% if gallery.images | length == 0 %}
+            {{ noImagesMessage }}
+        {% endif %}
+    </div>
+</div>
+
+{% put scripts %}
+    <script>
+        const lgContainer = document.getElementById('{{ __SELF__ }}');
+        const inlineGallery = lightGallery(lgContainer, {
+            container: lgContainer,
+            dynamic: true,
+            hash: false,
+            closable: false,
+            showMaximizeIcon: true,
+            controls         : {{ params.controls }},
+            counter          : {{ params.counter }},
+            download         : {{ params.download }},
+            easing           : 'ease-in-out',
+            escKey           : {{ params.escKey }},
+            exThumbImage     : 'data-external-thumb-image',
+            loop             : {{ params.loop }},
+            mode             : '{{ params.mode }}',
+            // temp fix see galleryId component, line 26
+            // plugins          : [{{ params.plugins | join(',') }}],
+            // slideShowAutoplay: {{ 'lgAutoplay' in params.plugins ? '!0':'!1' }},
+            plugins          : [{{ plugins | keys | join(',') }}],
+            slideShowAutoplay: {{ 'lgAutoplay' in (plugins | keys) ? '!0':'!1' }},
+            preload          : {{ params.preload }},
+            speed            : {{ params.speed }},
+            slideShowInterval: {{ params.pause }},
+            {% if params.prevHtml -%}
+            prevHtml         : '{{ params.prevHtml | raw }}',
+            {%- endif -%}
+
+            {%- if params.nextHtml -%}
+            nextHtml         : '{{ params.nextHtml | raw }}',
+            {%- endif -%}
+
+            dynamicEl: [
+                {% for image in gallery.images -%}
+                {
+                    src: '{{ image.path }}',
+                    thumb: '{{ image.getThumb(100, 100, 'auto') }}',
+                    subHtml: `<h4>{{ image.title }}</h4><p>{{ image.description }}</p>`,
+                },
+                {%- endfor %}
+            ],
+        });
+
+        // Since we are using dynamic mode, we need to programmatically open lightGallery
+        inlineGallery.openGallery();
+    </script>
+{% endput %}
+
+{#
+ # Temporary fix to avoid duplicate display of controls
+ # when prevHtml or nextHtml options are set
+ # see: https://github.com/sachinchoolur/lightGallery/issues/643
+ #}
+{% if params.prevHtml %}
+{% put styles %}
+    <style>
+        .lg-prev::after { content: none; }
+    </style>
+{% endput%}
+{% endif %}
+
+{% if params.nextHtml %}
+{% put styles %}
+    <style>
+        .lg-next::before { content: none; }
+    </style>
+{% endput%}
+{% endif %}

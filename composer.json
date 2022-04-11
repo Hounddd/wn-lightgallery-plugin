@@ -1,0 +1,26 @@
+{
+    "name": "hounddd/wn-lightgallery-plugin",
+    "type": "winter-plugin",
+    "description": "Galleries plugin for Winter CMS with lightbox support",
+    "homepage": "https://github.com/Hounddd/wn-lightgallery-plugin",
+    "keywords": ["winter cms", "winter", "plugin", "galleries", "gallery", "lightbox"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexey Bobkov",
+            "email": "aleksey.bobkov@gmail.com",
+            "role": "Original Author"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/Hounddd/wn-lightgallery-plugin/issues",
+        "source": "https://github.com/Hounddd/wn-lightgallery-plugin"
+    },
+    "require": {
+        "php": ">=7.0",
+        "composer/installers": "~1.0"
+    },
+    "extra": {
+        "installer-name": "lightgallery"
+    }
+}
