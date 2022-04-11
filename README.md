@@ -45,7 +45,7 @@ This plugin use <a href="https://www.lightgalleryjs.com/" target="_blank">lightG
 ### Using composer
 Just run this command
 ```bash
-composer require hounddd/wn-lightgallery
+composer require hounddd/wn-lightgallery-plugin
 ```
 
 ### Clone
