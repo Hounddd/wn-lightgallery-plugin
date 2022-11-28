@@ -1,3 +1,5 @@
-1.0.0:
-- Initial version of lightGallery plugin.
-- v1.0.0/create_all_tables.php
+'1.0.0':
+    - 'Initial version of lightGallery plugin.'
+    - v1.0.0/create_all_tables.php
+'1.0.1':
+    - 'Bugfix lightGallery plugins in galleries components.'

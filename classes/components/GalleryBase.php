@@ -304,9 +304,9 @@ class GalleryBase extends ComponentBase
 
     public function getPluginsOptions()
     {
-        $plugins = static::$pluginsList;
+        $plugins = [];
 
-        foreach ($plugins as $key) {
+        foreach (static::$pluginsList as $key) {
             $plugins[$key] = Lang::get('hounddd.lightgallery::lang.settings.plugins.' . $key);
         }
 
