@@ -2,7 +2,7 @@
 Create stunning images ~~and videos~~ galleries for your WinterCMS website in minutes. Responsive, touch-friendly, and easy to use.  
 
 ***
-This plugin use <a href="https://www.lightgalleryjs.com/" target="_blank">lightGallery script</a>.
+This plugin use <a href="https://www.lightgalleryjs.com/" target="_blank">lightGallery script v2.4.0</a>.
 ***
 
 ## Features
@@ -175,7 +175,7 @@ localeUrl[en] = "/galerie/:slug"
 localeTitle[fr] = "Affiche une galerie"
 
 [gallerySlug]
-slug = "{{:slug}}"
+slug = "{{ :slug }}"
 inline = "false"
 noImagesMessage = "No images in this gallery"
 plugins[] = "lgThumbnail"
