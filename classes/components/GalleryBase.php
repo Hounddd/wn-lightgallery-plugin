@@ -255,6 +255,15 @@ class GalleryBase extends ComponentBase
 
     public function onRun()
     {
+        $this->prepareVars();
+
+        $this->gallery = $this->page['gallery'] = $this->loadGallery();
+
+        if (!$this->gallery) {
+            $this->setStatusCode(404);
+            return $this->controller->run('404');
+        }
+
         $this->addCss('assets/css/gallery.css');
 
         $this->addCss('assets/css/lightgallery-bundle.min.css');
@@ -272,16 +281,6 @@ class GalleryBase extends ComponentBase
         $this->addJs('assets/js/plugins/lg-thumbnail.min.js');
         $this->addJs('assets/js/plugins/lg-video.min.js');
         $this->addJs('assets/js/plugins/lg-zoom.min.js');
-
-
-        $this->prepareVars();
-
-        $this->gallery = $this->page['gallery'] = $this->loadGallery();
-
-        if (!$this->gallery) {
-            $this->setStatusCode(404);
-            return $this->controller->run('404');
-        }
     }
 
     public function onRender()

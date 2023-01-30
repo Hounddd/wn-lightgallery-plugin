@@ -23,28 +23,31 @@
 
 {% put scripts %}
     <script>
-        lightGallery(document.getElementById("{{ __SELF__ }}"), {
-            // licenseKey: 'your_license_key'
-            controls         : {{ params.controls }},
-            counter          : {{ params.counter }},
-            download         : {{ params.download }},
-            easing           : 'ease-in-out',
-            escKey           : {{ params.escKey }},
-            exThumbImage     : 'data-external-thumb-image',
-            loop             : {{ params.loop }},
-            mode             : '{{ params.mode }}',
-            plugins          : [{{ params.plugins | join(',') }}],
-            preload          : {{ params.preload }},
-            speed            : {{ params.speed }},
-            slideShowInterval: {{ params.pause }},
-            slideShowAutoplay: {{ 'lgAutoplay' in params.plugins ? '!0':'!1' }},
-            {% if params.prevHtml -%}
-            prevHtml         : '{{ params.prevHtml | raw }}',
-            {%- endif %}
+        window.addEventListener('load', (event) => {
+            lightGallery(document.getElementById("{{ __SELF__ }}"), {
+                // licenseKey: 'your_license_key'
+                controls         : {{ params.controls }},
+                counter          : {{ params.counter }},
+                download         : {{ params.download }},
+                easing           : 'ease-in-out',
+                escKey           : {{ params.escKey }},
+                exThumbImage     : 'data-external-thumb-image',
+                loop             : {{ params.loop }},
+                mode             : '{{ params.mode }}',
+                plugins          : [{{ params.plugins | join(',') }}],
+                preload          : {{ params.preload }},
+                speed            : {{ params.speed }},
+                slideShowInterval: {{ params.pause }},
+                slideShowAutoplay: {{ 'lgAutoplay' in params.plugins ? '!0':'!1' }},
+                {% if params.prevHtml -%}
+                prevHtml         : '{{ params.prevHtml | raw }}',
+                {%- endif %}
 
-            {% if params.nextHtml -%}
-            nextHtml         : '{{ params.nextHtml | raw }}',
-            {%- endif %}
+                {% if params.nextHtml -%}
+                nextHtml         : '{{ params.nextHtml | raw }}'
+                {%- endif %}
+
+            });
         });
     </script>
 {% endput %}
