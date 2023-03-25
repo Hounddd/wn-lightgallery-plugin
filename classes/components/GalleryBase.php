@@ -1,4 +1,6 @@
-<?php namespace Hounddd\lightGallery\Classes\Components;
+<?php
+
+namespace Hounddd\lightGallery\Classes\Components;
 
 use Event;
 use Lang;
