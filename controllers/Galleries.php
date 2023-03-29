@@ -12,18 +12,30 @@ use Hounddd\lightGallery\Models\Gallery;
 class Galleries extends Controller
 {
     public $implement = [
-        'Backend.Behaviors.FormController',
-        'Backend.Behaviors.ListController'
+        \Backend\Behaviors\FormController::class,
+        \Backend\Behaviors\ListController::class,
+        \Backend\Behaviors\RelationController::class,
     ];
 
     public $formConfig = 'config_form.yaml';
     public $listConfig = 'config_list.yaml';
+    public $relationConfig = 'config_relation.yaml';
 
     public function __construct()
     {
         parent::__construct();
 
         BackendMenu::setContext('Hounddd.lightGallery', 'gallery', 'galleries');
+
+
+        //
+        // Sortable
+        //
+        // Legacy (v1)
+        if (!class_exists('System')) {
+            $this->addJs("/plugins/hounddd/lightgallery/assets/js/Sortable.min.js");
+        }
+        $this->addJs("/plugins/hounddd/lightgallery/assets/js/Galleries.min.js");
     }
 
     public function index_onDelete()
@@ -41,5 +53,21 @@ class Galleries extends Controller
         }
 
         return $this->listRefresh();
+    }
+
+
+
+    //
+    // Sortables
+    //
+    public function onReorderRelation()
+    {
+        $records = request()->input('rcd');
+        $model = Gallery::findOrFail($this->params[0]);
+
+        $relationModel = 'complex_images';
+        $model->setRelationOrder($relationModel, $records, range(1, count($records)));
+
+        Flash::success(trans('hounddd.lightgallery::lang.reorder.updated'));
     }
 }

@@ -1,0 +1,40 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: 'hounddd.lightgallery::lang.models.general.id'
+        searchable: true
+        invisible: true
+
+    sort_order:
+        label: ''
+        type: number
+        width: 20px
+        invisible: true
+
+    sort_order_handle:
+        label: " "
+        type: partial
+        path: $/hounddd/lightgallery/partials/_reoder_handle.htm
+        sortable: false
+        width: 60px
+
+    title:
+        label: 'hounddd.lightgallery::lang.models.general.title'
+        searchable: true
+        sortable: false
+
+    created_at:
+        label: 'hounddd.lightgallery::lang.models.general.created_at'
+        type: datetime
+        searchable: true
+        sortable: false
+        invisible: true
+    updated_at:
+        label: 'hounddd.lightgallery::lang.models.general.updated_at'
+        type: datetime
+        searchable: true
+        sortable: false
+        invisible: true

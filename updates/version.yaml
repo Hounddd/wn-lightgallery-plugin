@@ -3,3 +3,7 @@
     - v1.0.0/create_all_tables.php
 '1.0.1':
     - 'Bugfix lightGallery plugins in galleries components.'
+'1.0.2':
+    - 'Added image model and ability to create complex galleries.'
+    - v1.0.2/add_galleries_mode_field.php
+    - v1.0.2/create_images_tables.php

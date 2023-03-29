@@ -3,16 +3,16 @@
 return [
     'plugin' => [
         'name' => 'lightGallery',
-        'description' => 'Photos galleries with lightbox.'
+        'description' => 'Photos galleries with lightbox.',
     ],
     'menu' => [
         'new_gallery' => 'New gallery',
         'new_category' => 'New category',
     ],
     'common' => [
-        'menu_label'  => 'Galleries',
-        'galleries'  => 'Galleries',
-        'gallery'  => 'Gallery',
+        'menu_label' => 'Galleries',
+        'galleries' => 'Galleries',
+        'gallery' => 'Gallery',
         'categories' => 'Categories',
         'category' => 'Category',
         'slug' => 'Slug',
@@ -26,8 +26,25 @@ return [
         'infos_published_no_categories' => 'Published on :date.',
         'date_format' => 'M d, Y',
         'yes' => 'Yes',
-        'no' => '<No></No>',
+        'no' => 'No',
     ],
+
+    'models' => [
+        'general' => [
+            'id' => 'ID',
+            'created_at' => 'Created At',
+            'description' => 'Description',
+            'title' => 'Title',
+            'updated_at' => 'Updated At',
+        ],
+        'image' => [
+            'single' => 'Image',
+            'plural' => 'Images',
+            'link' => 'Link/Url',
+            'title' => 'Gestion des images',
+        ],
+    ],
+
     'categories' => [
         'list_title' => 'Manage the galleries categories',
         'new_category' => 'New category',
@@ -39,7 +56,7 @@ return [
         'deleting' => 'Deleting Category...',
         'delete_success' => 'Successfully deleted those categories.',
         'return_to_list' => 'Return to categories list',
-        'uncategorized' => 'Uncategorized'
+        'uncategorized' => 'Uncategorized',
     ],
     'category' => [
         'name_placeholder' => 'New category name',
@@ -47,7 +64,7 @@ return [
         'description_placeholder' => 'Category Description',
         'posts' => 'Posts',
         'return_to_categories' => 'Return to the galleries category list',
-        'reorder' => 'Reorder Categories'
+        'reorder' => 'Reorder Categories',
     ],
     'galleries' => [
         'list_title' => 'Manage the galleries',
@@ -67,6 +84,8 @@ return [
         'name_placeholder' => 'New gallery name',
         'slug_placeholder' => 'new-gallery-slug',
         'description_placeholder' => 'Gallery Description',
+        'complex_mode' => 'Complex mode',
+        'complex_mode_comment' => 'complex mode allow you to define image with html description, link ...',
         'images' => 'Images',
         'images_comment' => 'Re-order images to show then in the desired order, give them a title and a description they will be displayed in the image viewer.<br /><b>The first image will be used as the main image of the gallery.</b>',
         'images_count' => 'Nb of images',
@@ -74,11 +93,11 @@ return [
         'categories_comment' => 'Select the categories this gallery belongs to.',
         'tabs' => [
            'images' => 'Images',
-           'settings' => 'Settings'
+           'settings' => 'Settings',
         ],
     ],
     'permissions' => [
-        'all' => 'Manage galleries'
+        'all' => 'Manage galleries',
     ],
     'settings' => [
         'gallerylist' => [
@@ -169,12 +188,12 @@ return [
                 'exact' => 'Exact',
                 'portrait' => 'Portrait',
                 'landscape' => 'Landscape',
-                'crop' => 'Crop'
+                'crop' => 'Crop',
             ],
         ],
     ],
     'exeptions' => [
-        'publish_date_validation' => "Must specify a date"
+        'publish_date_validation' => "Must specify a date",
     ],
     'sorting' => [
         'title_asc' => 'Title (ascending)',
@@ -185,6 +204,10 @@ return [
         'updated_desc' => 'Updated (descending)',
         'published_asc' => 'Published (ascending)',
         'published_desc' => 'Published (descending)',
-        'random' => 'Random'
+        'random' => 'Random',
+    ],
+
+    'reorder' => [
+        'images' => 'Successfully reordered images'
     ],
 ];

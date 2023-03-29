@@ -1,5 +1,6 @@
 <?php namespace Hounddd\lightGallery\Models;
 
+use DB;
 use Model;
 use ValidationException;
 use Lang;
@@ -55,10 +56,26 @@ class Gallery extends Model
     ];
 
     /**
+     * @var array Relations
+     */
+    public $hasMany = [
+        'complex_images' => [
+            'Hounddd\lightGallery\Models\Image',
+            'table'  => 'hounddd_lightgallery_images',
+            'order' => 'sort_order asc',
+            'otherKey' => 'id',
+            'key'      => 'gallery_id',
+        ],
+    ];
+
+    /**
      * @var array Attachemnts
      */
     public $attachMany = [
-        'images' => ['System\Models\File', 'order' => 'sort_order'],
+        'images' => [
+            'System\Models\File',
+            'order' => 'sort_order'
+        ],
     ];
 
 
@@ -233,5 +250,35 @@ class Gallery extends Model
         }
 
         return $this->url = $controller->pageUrl($pageName, $params);
+    }
+
+
+
+    //
+    // Sortable
+    //
+    public function setRelationOrder($relationName, $itemIds, $itemOrders = null, $sortKey = 'sort_order')
+    {
+        if ( ! is_array($itemIds)) {
+            $itemIds = [$itemIds];
+        }
+
+        if ($itemOrders === null) {
+            $itemOrders = $itemIds;
+        }
+
+        if (count($itemIds) != count($itemOrders)) {
+            throw new Exception('Invalid setRelationOrder call - count of itemIds do not match count of itemOrders');
+        }
+
+        foreach ($itemIds as $index => $id) {
+            $order    = $itemOrders[$index];
+            $relation = $this->getRelationDefinition($relationName);
+            // debug($relation);
+            DB::table($relation['table'])
+              ->where($relation['key'], $this->id)
+              ->where($relation['otherKey'], $id)
+              ->update([$sortKey => $order]);
+        }
     }
 }

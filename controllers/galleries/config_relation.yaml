@@ -1,0 +1,16 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+complex_images:
+    label: 'hounddd.lightgallery::lang.models.image.single'
+    view:
+        list: $/hounddd/lightgallery/models/image/columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        form: $/hounddd/lightgallery/models/image/fields.yaml
+        list: $/hounddd/lightgallery/models/image/columns.yaml
+        recordsPerPage: 10
+    defaultSort:
+        column: title
+        direction: desc

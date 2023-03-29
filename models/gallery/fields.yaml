@@ -42,6 +42,28 @@ tabs:
         hounddd.lightgallery::lang.gallery.tabs.images: icon-file-image-o
         hounddd.lightgallery::lang.gallery.tabs.settings: icon-gear
     fields:
+
+        complex_mode:
+            tab: hounddd.lightgallery::lang.gallery.tabs.images
+            label: hounddd.lightgallery::lang.gallery.complex_mode
+            comment: hounddd.lightgallery::lang.gallery.complex_mode_comment
+            type: switch
+            on: hounddd.lightgallery::lang.common.yes
+            off: hounddd.lightgallery::lang.common.no
+
+        complex_images:
+            tab: hounddd.lightgallery::lang.gallery.tabs.images
+            label: hounddd.lightgallery::lang.gallery.images
+            commentAbove: hounddd.lightgallery::lang.gallery.images_comment
+            commentHtml: true
+            span: full
+            type: partial
+            path: field_complex_images
+            trigger:
+                action: show
+                field: complex_mode
+                condition: checked
+
         images:
             tab: hounddd.lightgallery::lang.gallery.tabs.images
             label: hounddd.lightgallery::lang.gallery.images
@@ -52,6 +74,10 @@ tabs:
             mode: image
             imageHeight: 150
             imageWidth: 250
+            trigger:
+                action: show
+                field: complex_mode
+                condition: unchecked
 
         categories:
             label: hounddd.lightgallery::lang.gallery.categories

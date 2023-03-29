@@ -3,16 +3,16 @@
 return [
     'plugin' => [
         'name' => 'lightGallery',
-        'description' => 'Galeries de photos avec lightbox.'
+        'description' => 'Galeries de photos avec lightbox.',
     ],
     'menu' => [
         'new_gallery' => 'Nouvelle galerie',
         'new_category' => 'Nouvelle catégorie',
     ],
     'common' => [
-        'menu_label'  => 'Galeries',
-        'galleries'  => 'Galeries',
-        'gallery'  => 'Galerie',
+        'menu_label' => 'Galeries',
+        'galleries' => 'Galeries',
+        'gallery' => 'Galerie',
         'categories' => 'Catégories',
         'category' => 'Catégorie',
         'slug' => 'Slug',
@@ -28,6 +28,23 @@ return [
         'yes' => 'Oui',
         'no' => 'Non',
     ],
+
+    'models' => [
+        'general' => [
+            'id' => 'ID',
+            'created_at' => 'Created At',
+            'description' => 'Description',
+            'title' => 'Titre',
+            'updated_at' => 'Updated At',
+        ],
+        'image' => [
+            'single' => 'Image',
+            'plural' => 'Images',
+            'link' => 'Lien/Url',
+            'title' => 'Gestion des images',
+        ],
+    ],
+
     'categories' => [
         'list_title' => 'Gérer les catégories de galerie',
         'new_category' => 'Nouvelle catégorie',
@@ -67,18 +84,20 @@ return [
         'name_placeholder' => 'Nom de la nouvelle galerie',
         'slug_placeholder' => 'adresse-de-la-nouvelle-galerie',
         'description_placeholder' => 'Description de la galerie',
+        'complex_mode' => 'Mode complexe',
+        'complex_mode_comment' => 'Le mode complexe vous permet de définir une image avec une description html, un lien ...',
         'images' => 'Images',
         'images_comment' => 'Réorganisez les images pour les afficher dans l’ordre souhaité, donnez-leur un titre et une description qui s’afficherons dans le visionneur d’images.<br /><b>La première image sera utilisée comme image principale de la galerie.</b>',
         'images_count' => 'Nb d’images',
         'categories' => 'Catégories',
         'categories_comment' => 'Sélectionnez les catégories auxquelles appartient cette galerie.',
         'tabs' => [
-           'images' => 'Images',
-           'settings' => 'Paramètres'
+            'images' => 'Images',
+            'settings' => 'Paramètres',
         ],
     ],
     'permissions' => [
-        'all' => 'Gérer les galeries'
+        'all' => 'Gérer les galeries',
     ],
     'settings' => [
         'gallerylist' => [
@@ -112,7 +131,9 @@ return [
             'lgRotate' => 'Fonctions de rotation',
             'lgShare' => 'Fonctions de partage pour médias sociaux',
             'lgThumbnail' => 'Aperçu miniature',
+
             // 'lgVideo' => 'Afficher les vidéos dans lightGallery',
+
             'lgZoom' => 'Fonctionnalités de zoom',
         ],
         'category_page' => 'Page de catégorie',
@@ -169,12 +190,12 @@ return [
                 'exact' => 'Exact',
                 'portrait' => 'Portrait',
                 'landscape' => 'Paysage',
-                'crop' => 'Recadrer'
+                'crop' => 'Recadrer',
             ],
         ],
     ],
     'exeptions' => [
-        'publish_date_validation' => "Vous devez préciser une date de publication"
+        'publish_date_validation' => "Vous devez préciser une date de publication",
     ],
     'sorting' => [
         'title_asc' => 'Titre (ascendant)',
@@ -186,5 +207,9 @@ return [
         'published_asc' => 'Publication (ascendant)',
         'published_desc' => 'Publication (descendant)',
         'random' => 'Aléatoire',
+    ],
+
+    'reorder' => [
+        'images' => 'Images réordonnées avec succès'
     ],
 ];
