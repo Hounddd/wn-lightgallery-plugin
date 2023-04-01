@@ -75,7 +75,7 @@ class Plugin extends PluginBase
                     ],
                     'categories' => [
                         'label'       => 'hounddd.lightgallery::lang.common.categories',
-                        'icon'        => 'icon-server',
+                        'icon'        => 'icon-list',
                         'url'         => Backend::url('hounddd/lightgallery/categories'),
                         'permissions' => ['hounddd.lightgallery.access_categories']
                     ]
