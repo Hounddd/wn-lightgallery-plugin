@@ -1,5 +1,5 @@
 # LightGallery Plugin for Winter
-Create stunning images ~~and videos~~ galleries for your WinterCMS website in minutes. Responsive, touch-friendly, and easy to use.  
+Create stunning images ~~and videos~~ galleries for your WinterCMS website in minutes. Responsive, touch-friendly, and easy to use.
 
 ***
 This plugin use <a href="https://www.lightgalleryjs.com/" target="_blank">lightGallery script v2.4.0</a>.
@@ -40,7 +40,7 @@ This plugin use <a href="https://www.lightgalleryjs.com/" target="_blank">lightG
 * And many more.
 
 ## Installation
-*Let assume you're in the root of your wintercms installation*  
+*Let assume you're in the root of your wintercms installation*
 
 ### Using composer
 Just run this command
@@ -57,8 +57,8 @@ mkdir hounddd && cd hounddd
 git clone https://github.com/Hounddd/wn-lightgallery-plugin lightgallery
 ```
 
-> **Note**:   
-> Run `php artisan winter:up` command  
+> **Note**:
+> Run `php artisan winter:up` command
 > Add `{% styles %}` and `{% scripts %}` placeholders in your layout or page `<header>` tag, if it is not already the case.
 
 
@@ -88,7 +88,7 @@ The galleryList component injects the following variables to the page where it's
 
 The component supports pagination and reads the current page index from the :page URL parameter. The next example shows the basic component usage:
 
-```twig	
+```twig
 title = "Show galleries"
 url = "/galleries/:page?"
 layout = "default"
@@ -135,7 +135,7 @@ function onEnd()
 The galleries and the pagination are coded in the default component partial `plugins/hounddd/lightgallery/components/galleries/default.htm`. If the default markup is not suitable for your website, feel free to copy it from the default partial and replace the {% component %} call in the example above with the partial contents.
 
 ### Gallery (by slug)
-Use the `gallerySlug` component to display a gallery on a page.  
+Use the `gallerySlug` component to display a gallery on a page.
 The component has the following properties:
 
 * **inline** - the display mode of the gallery.
@@ -155,14 +155,14 @@ The component has the following properties:
 * **width** - the width of the thumbnails to be displayed in the gallery.
 * **height** - the height of the thumbnails to be displayed in the gallery.
 * **resizer** - how the image should be fitted to dimensions.
-* categoryPage - path to the category page. The default value is galleries/category - it matches the pages/galleries/category.htm file in the theme directory. This property is used in the default component partial for creating links to the gallery images.  
+* categoryPage - path to the category page. The default value is galleries/category - it matches the pages/galleries/category.htm file in the theme directory. This property is used in the default component partial for creating links to the gallery images.
 
 The gallerySlug component injects the following variables to the page where it's used:
 
 * **gallery** - the gallery object loaded from the database. If the post is not found, the variable value is null.
 * **noImagesMessage** - contains the value of the `noImagesMessage` component's property.
 
-The next example shows the basic component usage on the gallery page:  
+The next example shows the basic component usage on the gallery page:
 
 ```twig
 title = "Display a gallery"
@@ -200,18 +200,29 @@ The gallery details are coded in the component partials wich are shared between 
 * `plugins/hounddd/lightgallery/components/partials/gallery.htm` for thumbs view launching lightbox on click.
 * `plugins/hounddd/lightgallery/components/partials/gallery_inline.htm` for inline lightbox view.
 
+## Blocks
+This plugin provides a block compatible with the [Winter.blocks](https://github.com/wintercms/wn-blocks-plugin) plugin.
+
+### Block `lightgallery_gallery`
+This block provide a simple way to add an images gallery to your content.
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `gallery` | Integer | Gallery ID to display |
+| `maxImages` | Integer | Number of images per gallery between 2, 4 or 6.<br>Default: `'4'` |
+
 ## Notes
 
 ### 🔑 Licence key
 If you want to use lightGallery to develop commercial sites, themes, projects,
 and applications, the Commercial license is the appropriate license. With this
-option, your source code is kept proprietary.  
+option, your source code is kept proprietary.
 <a href="https://www.lightgalleryjs.com/license/" target="_blank">Read more about the commercial license</a>
 
 ### 🏆 Credits
 This plugin is inspired by <a href="https://github.com/rjchauhan/RJGallery-for-OctoberCMS" target="_blank">rjchauhan /
-RJGallery-for-OctoberCMS</a> of which it can be a replacement*.  
-Besides the removal of jQuery from the dependencies, it brings some new features compared to the source plugin: 
+RJGallery-for-OctoberCMS</a> of which it can be a replacement*.
+Besides the removal of jQuery from the dependencies, it brings some new features compared to the source plugin:
 
  - Update to last stable version of LightGallery script (v2.4.0)
  - Default image for galleries

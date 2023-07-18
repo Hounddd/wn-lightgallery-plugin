@@ -45,6 +45,17 @@ return [
         ],
     ],
 
+    'blocks' => [
+        'images_gallery' => [
+            'name' => 'Images gallery',
+            'description' => 'Show a gallery of images',
+            'gallery' => 'Choose the photo gallery to display',
+            'maxImages' => 'Number of images to display',
+            'no_pictures' => 'Photo gallery in progress',
+            'zoom_message' => 'Click images to enlarge',
+        ],
+    ],
+
     'categories' => [
         'list_title' => 'Manage the galleries categories',
         'new_category' => 'New category',
@@ -96,6 +107,7 @@ return [
            'settings' => 'Settings',
         ],
     ],
+
     'permissions' => [
         'all' => 'Manage galleries',
     ],
@@ -192,6 +204,7 @@ return [
             ],
         ],
     ],
+
     'exeptions' => [
         'publish_date_validation' => "Must specify a date",
     ],
@@ -206,7 +219,6 @@ return [
         'published_desc' => 'Published (descending)',
         'random' => 'Random',
     ],
-
     'reorder' => [
         'images' => 'Successfully reordered images'
     ],

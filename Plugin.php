@@ -44,6 +44,14 @@ class Plugin extends PluginBase
         ];
     }
 
+
+    public function registerBlocks(): array
+    {
+        return [
+            'lightgallery_gallery' => '$/hounddd/lightgallery/blocks/images_gallery.block',
+        ];
+    }
+
     public function registerNavigation()
     {
         return [
