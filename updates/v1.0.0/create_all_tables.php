@@ -57,6 +57,17 @@ class CreateAllTables extends Migration
                 $table->primary(['gallery_id', 'category_id'], 'hounddd_lightgallery_gallery_id_category_id');
             });
         } else {
+
+            if (!Schema::hasColumn('hounddd_lightgallery_categories', 'slug')) {
+
+                Schema::table('hounddd_lightgallery_galleries', function($table)
+                {
+                    $table->string('slug')->nullable()->index()->after('name');
+                    $table->text('description')->nullable()->after('slug');
+                });
+            }
+
+
             Db::table('system_files')->where('attachment_type', 'Raviraj\Rjgallery\Models\Gallery')
                 ->update(['attachment_type' => 'Hounddd\lightGallery\Models\Gallery']);
         }
