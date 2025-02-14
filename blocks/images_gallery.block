@@ -1,7 +1,7 @@
 name: hounddd.lightgallery::lang.blocks.images_gallery.name
 description: hounddd.lightgallery::lang.blocks.images_gallery.description
 icon: icon-picture-o
-context: ["pages", "blog"]
+tags: ["pages", "blog"]
 fields:
     gallery:
         label: hounddd.lightgallery::lang.blocks.images_gallery.gallery
