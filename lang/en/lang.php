@@ -49,10 +49,16 @@ return [
         'images_gallery' => [
             'name' => 'Images gallery',
             'description' => 'Show a gallery of images',
+            'display_mode' => 'Display mode',
             'gallery' => 'Choose the photo gallery to display',
             'maxImages' => 'Number of images to display',
             'no_pictures' => 'Photo gallery in progress',
             'zoom_message' => 'Click images to enlarge',
+            'modes' => [
+                'grid' => 'Grid',
+                'grid_double' => 'Grid x2 thumbs',
+                'inline' => 'Inline',
+            ],
         ],
     ],
 

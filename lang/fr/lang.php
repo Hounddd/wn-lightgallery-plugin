@@ -49,10 +49,16 @@ return [
         'images_gallery' => [
             'name' => 'Galerie d’images',
             'description' => 'Afficher une galerie d’images',
+            'display_mode' => 'Mode d’affichage',
             'gallery' => 'Choisissez la galerie de photos à afficher',
             'maxImages' => 'Nombre d’images à afficher',
             'no_pictures' => 'Galerie photo en cours de réalisation',
             'zoom_message' => 'Cliquez les images pour agrandir',
+            'modes' => [
+                'grid' => 'Grille',
+                'grid_double' => 'Grille x2 miniatures',
+                'inline' => 'En ligne',
+            ],
         ],
     ],
 

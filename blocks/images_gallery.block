@@ -1,43 +1,70 @@
 name: hounddd.lightgallery::lang.blocks.images_gallery.name
 description: hounddd.lightgallery::lang.blocks.images_gallery.description
 icon: icon-picture-o
-tags: ["pages", "lightgallery"]
+context: ["pages", "lightgallery"]
 fields:
     gallery:
         label: hounddd.lightgallery::lang.blocks.images_gallery.gallery
-        span: full
+        span: left
         type: dropdown
         options: \Hounddd\lightGallery\Classes\Helpers::listGalleries
     maxImages:
         label: hounddd.lightgallery::lang.blocks.images_gallery.maxImages
-        span: left
+        span: right
         type: dropdown
+        default: 4
         options:
             2: 2
             4: 4
             6: 6
-        default: 4
+    display_mode:
+        label: hounddd.lightgallery::lang.blocks.images_gallery.display_mode
+        span: left
+        type: balloon-selector
+        default: 'grid'
+        options:
+            grid: hounddd.lightgallery::lang.blocks.images_gallery.modes.grid
+            grid_double: hounddd.lightgallery::lang.blocks.images_gallery.modes.grid_double
+            inline: hounddd.lightgallery::lang.blocks.images_gallery.modes.inline
 ==
 <?php
     function onStart(){
         use \Hounddd\lightGallery\Models\Gallery as GalleryModel;
 
         $this['gallery'] = GalleryModel::find($this->data['gallery']);
-        // debug($this->gallery);
+        $maxImages = $this->data['maxImages'] ?? 4;
+        $displayMode = $this->data['display_mode'] ?? 'grid';
 
-        $this['maxImages'] = $this->data['maxImages']?$this->data['maxImages']:4;
-        $this['maxImages'] = 2;
+        $firstImageCss = '';
 
-        if ($this['maxImages'] == 2) {
-            $this['gridCss']       = 'grid-cols-3 grid-rows-2';
-            $this['firstImageCss'] = 'col-span-2 row-span-2';
-        } elseif ($this['maxImages'] == 6) {
-            $this['gridCss']       = 'grid-cols-7 grid-rows-6';
-            $this['firstImageCss'] = 'col-span-6 row-span-6';
+        if ($maxImages == 2) {
+            $gridCss = 'grid-cols-3';
+        } elseif ($maxImages == 6) {
+            $gridCss = 'grid-cols-7';
         } else {
-            $this['gridCss']       = 'grid-cols-5 grid-rows-4';
-            $this['firstImageCss'] = 'col-span-4 row-span-4';
+            $gridCss = 'grid-cols-5';
         }
+
+        if ($displayMode == 'grid' || $displayMode == 'grid_double') {
+            if ($maxImages == 2) {
+                $gridCss .= ' grid-rows-2';
+                $firstImageCss = 'row-span-2 ' .($displayMode == 'grid_double' ? 'col-span-3' : 'col-span-2');
+            } elseif ($maxImages == 6) {
+                $gridCss .= ' grid-rows-6';
+                $firstImageCss = 'row-span-6 ' .($displayMode == 'grid_double' ? 'col-span-5' : 'col-span-6');
+            } else {
+                $gridCss .= ' grid-rows-4';
+                $firstImageCss = 'row-span-4 ' .($displayMode == 'grid_double' ? 'col-span-3' : 'col-span-4');
+            }
+        } 
+
+        if ($displayMode == 'grid_double') {
+            $maxImages = $maxImages * 2;
+        }
+
+        $this['maxImages'] = $maxImages;
+        $this['gridCss'] = $gridCss;
+        $this['firstImageCss'] = $firstImageCss;
     }
 ?>
 ==
@@ -48,21 +75,21 @@ fields:
             {# Display a show more link #}
             <a class="gallery-item aspect-w-1 aspect-h-1 {{ loop.first ? firstImageCss }}" href="{{ picture.path }}" target="_blank"
                 data-sub-html="<h4>{{ picture.title }}</h4><p>{{ picture.description }}</p>"
-                data-external-thumb-image="{{ picture.thumb('400','400',{'mode':'crop'}) }}"
+                data-external-thumb-image="{{ picture | resize('400','400',{'mode':'crop','extension':'webp'}) }}"
             >
-                <img src="{{ picture.thumb('400','400',{'mode':'crop'}) }}" class=" object-cover w-full" alt="{{ picture.title }}">
+                <img src="{{ picture | resize('400','400',{'mode':'crop','extension':'webp'}) }}" class=" object-cover w-full" alt="{{ picture.title }}">
                 <div class=" flex items-center justify-center bg-black/50 text-white">
-                    <span class="text-2xl font-semibold">{{ gallery.images | length - maxImages }}</span>
-                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    <span class="text-lg lg:text-2xl font-semibold">{{ gallery.images | length - maxImages }}</span>
+                    <svg class="w-6 lg:w-12 h-6 lg:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                 </div>
             </a>
         {% else %}
             <a class="gallery-item aspect-w-1 aspect-h-1 {{ loop.first ? firstImageCss }} {{ loop.index > maxImages ? 'hidden' }}" href="{{ picture.path }}" target="_blank"
                 data-sub-html="<h4>{{ picture.title }}</h4><p>{{ picture.description }}</p>"
-                data-external-thumb-image="{{ picture.thumb('400','400',{'mode':'crop'}) }}"
+                data-external-thumb-image="{{ picture | resize('400','400',{'mode':'crop','extension':'webp'}) }}"
             >
                 {% if loop.index <= maxImages %}
-                <img src="{{ picture.thumb('400','400',{'mode':'crop'}) }}" class=" object-cover w-full" alt="{{ picture.title }}">
+                <img src="{{ picture | resize('400','400',{'mode':'crop','extension':'webp'}) }}" class=" object-cover w-full" alt="{{ picture.title }}">
                 {% endif %}
             </a>
         {% endif %}
